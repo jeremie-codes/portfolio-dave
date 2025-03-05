@@ -10,6 +10,11 @@ class Service extends Model
         'titre',
         'description',
         'image',
+        'category_id',
         'est_publie'
     ];
+
+    public function category() {
+        return $this->belongsTo(Categorie::class);
+    }
 }

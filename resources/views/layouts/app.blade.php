@@ -1,313 +1,135 @@
-<html class="no-js" lang="en">
-    <head>
-        <title>SmartDev | Accueil</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="author" content="ThemeZaa">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
-        <meta name="description" content="SmartDev, Votrre Startup qui apporte des solution optimal adaptées à vos besoins !">
-        <!-- favicon icon -->
-        <link rel="shortcut icon" href="{{ asset('image/logo.png') }}">
-        <link rel="apple-touch-icon" href="{{ asset('image/logo.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('image/logo.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('image/logo.png') }}">
-        <!-- style sheets and font icons  -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/font-icons.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-vendors.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}"/>
-        <style>
-            @media screen (min-width: 1000px) {
-                .navbar-brand img {
-                    width: 130px !important;
-                }
-            }
-        </style>
-        <!-- revolution slider -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('revolution/css/settings.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('revolution/css/layers.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('revolution/css/navigation.css') }}">
-    </head>
-    <body data-mobile-nav-style="classic">
-        <!-- start header -->
-        <header>
-            <!-- start navigation -->
-            <nav
-                class="navbar navbar-expand-lg navbar-dark bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
-                <div class="container-fluid nav-header-container">
-                    <div class="col-auto col-sm-6 col-lg-2 me-auto ps-lg-0">
-                        <a class="navbar-brand" href="/">
-                            <img src="{{ asset('image/icon.png') }}" data-at2x="{{ asset('image/icon.png') }}" class="default-logo" alt="">
-                            <img src="{{ asset('image/icon-b.png') }}" data-at2x="{{ asset('image/icon-b.png') }}" class="alt-logo" alt="">
-                            <img src="{{ asset('image/icon-b.png') }}" data-at2x="{{ asset('image/icon-b.png') }}" class="mobile-logo" alt="">
-                        </a>
-                    </div>
-                    <div class="col-auto col-lg-8 menu-order px-lg-0">
-                        <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav alt-font">
-                                <li class="nav-item megamenu">
-                                    <a href="/" class="nav-link">Accueil</a>
-                                </li>
-                                <li class="nav-item megamenu">
-                                    <a href="/about" class="nav-link">À Propos</a>
-                                </li>
-                                <li class="nav-item megamenu">
-                                    <span data-link="{{ url('/#expertise') }}" class="nav-link btnlink">Expertise</span>
-                                </li>
-                                <li class="nav-item megamenu">
-                                    <span data-link="{{ url('/#avantages') }}" class="nav-link btnlink">Avantages</span>
-                                </li>
-                                <li class="nav-item megamenu">
-                                    <span data-link="{{ url('/#realisations') }}" class="nav-link btnlink">Réalisations</span>
-                                </li>
-                                <li class="nav-item megamenu">
-                                    <span data-link="{{ url('/#contact') }}" class="nav-link btnlink">Contact</span>
-                                </li>
-                            </ul>
-                            <script>
-                                const allLink = document.querySelectorAll('.btnlink');
-                                for (let i = 0; i < allLink.length; i++) {
-                                    const link = allLink[i];
-                                    link.addEventListener('click', () => document.location = link.getAttribute('data-link'));
-                                }
-                            </script>
-                        </div>
-                    </div>
-                    <div class="col-auto col-lg-2 text-end pe-0 font-size-0">
-                        <div class="header-search-icon search-form-wrapper">
-                            <a href="javascript:void(0)" class="search-form-icon header-search-form"><i
-                                    class="feather icon-feather-search"></i></a>
-                            <!-- start search input -->
-                            <div class="form-wrapper">
-                                <button title="Close" type="button" class="search-close alt-font">×</button>
-                                <form id="search-form" role="search" method="get" class="search-form text-start"
-                                    action="/">
-                                    <div class="search-form-box">
-                                        <span class="search-label alt-font text-small text-uppercase text-medium-gray">Qu'est-ce que tu cherches?</span>
-                                        <input class="search-input alt-font" id="search-form-input5e219ef164995"
-                                            placeholder="Entrer le mot clé ..." name="s" value="" type="text"
-                                            autocomplete="off">
-                                        <button type="submit" class="search-button">
-                                            <i class="feather icon-feather-search" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- end search input -->
-                        </div>
-                        <div class="header-push-button d-none d-lg-inline-block hidden-xs">
-                            <a href="javascript:void(0);" class="push-button">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Agence de Fret')</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    @stack('styles')
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{{ route('home') }}" class="flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">Ser-Rapide</span>
+                    </a>
                 </div>
-            </nav>
-            <div class="push-menu padding-50px-lr bg-white">
-                <a href="javascript:void(0);" class="close-menu text-extra-dark-gray text-green-hover"><i class="fa-solid fa-times"></i></a>
-                <div class="push-menu-wrapper text-center" data-scroll-options='{ "theme": "dark" }'>
-                    <h1
-                        class="text-extra-dark-gray alt-font font-weight-700 letter-spacing-minus-3px text-uppercase no-margin-bottom">
-                        Bonjour</h1>
-                    <span class="alt-font text-green text-large text-uppercase d-block">Soyons amis.</span>
-                    <div class="w-100">
-                        <!-- <ul class="instafeed-grid instafeed-wrapper grid grid-3col xl-grid-3col lg-grid-3col md-grid-3col sm-grid-3col xs-grid-3col gutter-small" data-total="6"> -->
-                        <a href="#" target="_blank">
-                            <img src="{{ asset('image/logo-b.png') }}" data-src="{{ asset('image/logo-b.png') }}" class="insta-image" width="250"
-                                alt="logo" />
-                        </a>
-                        <!-- </ul> -->
-                    </div>
-                    <div class="margin-5-rem-bottom text-center lg-margin-3-rem-bottom">
-                        <span
-                            class="alt-font text-large margin-3-rem-bottom w-70 mx-auto text-extra-dark-gray d-inline-block line-height-26px lg-margin-2-rem-bottom">Obtenez
-                            la dernière mise à jour de nos applications de confiance</span>
-                        <form action="email-templates/subscribe-newsletter.php" method="post">
-                            <div class="newsletter-email position-relative">
-                                <input class="border-radius-5px medium-input m-0 required" name="email"
-                                    placeholder="Entre votre adresse email" type="email">
-                                <input type="hidden" name="redirect" value="">
-                                <button class="btn btn-medium line-height-18px submit" type="submit"><i
-                                        class="fa-regular fa-envelope text-green left-icon"></i>S'ABONNER</button>
-                                <div class="form-results rounded d-none position-absolute"></div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="text-center elements-social social-icon-style-05 margin-10px-bottom">
-                        <ul class="small-icon">
-                            <li><a class="facebook" href="https://www.facebook.com/" target="_blank"><i
-                                        class="fa-brands fa-facebook-f"></i><span></span></a></li>
-                            <li><a class="dribbble" href="http://wa.me/243827289636" target="_blank"><i
-                                        class="fa-brands fa-whatsapp"></i><span></span></a></li>
-                            <li><a class="twitter" href="http://www.twitter.com" target="_blank"><i
-                                        class="fa-brands fa-twitter"></i><span></span></a></li>
-                            <li><a class="instagram" href="http://www.instagram.com" target="_blank"><i
-                                        class="fa-brands fa-instagram"></i><span></span></a></li>
-                            <li><a class="linkedin" href="http://www.linkedin.com" target="_blank"><i
-                                        class="fa-brands fa-linkedin-in"></i><span></span></a></li>
-                        </ul>
-                    </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600 transition">Accueil</a>
+                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-600 transition">À propos</a>
+                    <a href="{{ route('contact') }}" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+                    <a href="{{ route('contact') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Demander un devis
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </header>
-        <!-- end header -->
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <a href="{{ route('home') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">Accueil</a>
+            <a href="{{ route('about') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">À propos</a>
+            <a href="{{ route('contact') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">Contact</a>
+            <a href="{{ route('contact') }}" class="block py-2 px-4 text-sm bg-blue-600 text-white">Demander un devis</a>
+        </div>
+    </nav>
 
-        @yield('content');
+    <!-- Contenu principal -->
+    <main class="flex-grow">
+        @yield('content')
+    </main>
 
-        <!-- javascript -->
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/theme-vendors.min.js') }}"></script>
-        <!-- revolution js files -->
-        <script type="text/javascript" src="{{ asset('revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4">FreightPro</h3>
+                    <p class="text-gray-300 mb-4">Votre partenaire de confiance pour tous vos besoins en transport et logistique. Nous offrons des solutions sur mesure pour optimiser votre chaîne d'approvisionnement.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <span class="sr-only">Facebook</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition">Accueil</a></li>
+                        <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition">À propos</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Nos services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            101, Rue Daniel Casanova, 93200 Saint Denis France
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            +33 774 453 128
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            M16, Av Colonel Ebeya, C. Gombe / Kinshasa R.D Congo
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            +243 983 032 501
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            contact@freightpro.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <p class="text-center text-gray-300">&copy; {{ date('Y') }} Ser-Rapide. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 
-        <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-
-        <script type="text/javascript" src="{{ asset('revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-
-        <script type="text/javascript">
-
-            var revapi263, tpj;
-            (function () {
-                if (tpj === undefined) {
-                    tpj = jQuery;
-                    if ("off" == "on")
-                        tpj.noConflict();
-                }
-                if (!/loaded|interactive|complete/.test(document.readyState))
-                    document.addEventListener("DOMContentLoaded", onLoad);
-                else
-                    onLoad();
-                    function onLoad() {
-
-                        if (tpj("#rev_slider_26_1").revolution == undefined) {
-                            revslider_showDoubleJqueryError("#rev_slider_26_1");
-                        } else {
-                            var revOffset = tpj(window).width() <= 991 ? '73px' : '';
-                            revapi263 = tpj("#rev_slider_26_1").show().revolution({
-                                sliderType: "standard",
-                                jsFileLocation: "{{ asset('revolution/js/') }}",
-                                // sliderLayout: "fullscreen",
-                                dottedOverlay: "none",
-                                delay: 4500,
-                                navigation: {
-                                    keyboardNavigation: "on",
-                                    keyboard_direction: "horizontal",
-                                    mouseScrollNavigation: "off",
-                                    mouseScrollReverse: "default",
-                                    onHoverStop: "off",
-                                    touch: {
-                                        touchenabled: "on",
-                                        touchOnDesktop: "on",
-                                        swipe_threshold: 75,
-                                        swipe_min_touches: 1,
-                                        swipe_direction: "horizontal",
-                                        drag_block_vertical: false
-                                    },
-                                    arrows: {
-                                        enable: true,
-                                        style: 'ares',
-                                        tmp: '',
-                                        rtl: false,
-                                        hide_onleave: false,
-                                        hide_onmobile: true,
-                                        hide_under: 767,
-                                        hide_over: 9999,
-                                        hide_delay: 0,
-                                        hide_delay_mobile: 0,
-
-                                        left: {
-                                            container: 'slider',
-                                            h_align: 'left',
-                                            v_align: 'center',
-                                            h_offset: 60,
-                                            v_offset: 0
-                                        },
-
-                                        right: {
-                                            container: 'slider',
-                                            h_align: 'right',
-                                            v_align: 'center',
-                                            h_offset: 60,
-                                            v_offset: 0
-                                        }
-                                    },
-                                    bullets: {
-                                        enable: true,
-                                        style: 'zeus',
-                                        direction: 'horizontal',
-                                        rtl: false,
-
-                                        container: 'slider',
-                                        h_align: 'center',
-                                        v_align: 'bottom',
-                                        h_offset: 0,
-                                        v_offset: 30,
-                                        space: 7,
-
-                                        hide_onleave: false,
-                                        hide_onmobile: false,
-                                        hide_under: 0,
-                                        hide_over: 767,
-                                        hide_delay: 200,
-                                        hide_delay_mobile: 1200
-                                    },
-                                },
-                                responsiveLevels: [1240, 1025, 778, 480],
-                                visibilityLevels: [1920, 1500, 1025, 768],
-                                gridwidth: [1200, 991, 778, 480],
-                                gridheight: [680, 680, 680, 680],
-                                lazyType: "none",
-                                shadow: 0,
-                                spinner: "spinner4",
-                                stopLoop: "off",
-                                stopAfterLoops: -1,
-                                stopAtSlide: -1,
-                                shuffle: "off",
-                                autoHeight: "on",
-                                fullScreenAutoWidth: "on",
-                                fullScreenAlignForce: "off",
-                                fullScreenOffsetContainer: "",
-                                fullScreenOffset: revOffset,
-                                disableProgressBar: "on",
-                                hideThumbsOnMobile: "off",
-                                hideSliderAtLimit: 0,
-                                hideCaptionAtLimit: 0,
-                                hideAllCaptionAtLimit: 0,
-                                debugMode: false,
-                                fallbacks: {
-                                    simplifyAll: "off",
-                                    nextSlideOnWindowFocus: "off",
-                                    disableFocusListener: false,
-                                }
-                            });
-                        }
-                        ; /* END OF revapi call */
-                    }
-                    ; /* END OF ON LOAD FUNCTION */
-                 }()); /* END OF WRAPPING FUNCTION */
-
-        </script>
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-93NGDNYKNY"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-93NGDNYKNY');
-        </script>
-    </body>
+    @stack('scripts')
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
 </html>

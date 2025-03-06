@@ -13,16 +13,22 @@
 
                 <div class="space-y-6">
                     <div>
-                        <h3 class="text-lg font-semibold mb-2">Notre adresse</h3>
-                        <p class="text-gray-600">123 Rue du Commerce<br>75001 Paris, France</p>
+                        <h3 class="text-lg font-semibold mb-2">Nos adresses</h3>
+                        <p>
+                            <li class="text-gray-600">101, Rue Daniel Casanova,<br>93200 Saint Denis France</li>
+                        </p>
+                        <p>
+                            <li class="text-gray-600">M16, Av Colonel Ebeya,<br>C. Gombe / Kinshasa R.D Congo</li>
+                        </p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold mb-2">Téléphone</h3>
-                        <p class="text-gray-600">+33 1 23 45 67 89</p>
+                        <h3 class="text-lg font-semibold mb-2">Téléphones</h3>
+                        <li class="text-gray-600">+33 774 453 128</li>
+                        <li class="text-gray-600">+243 983 032 501</li>
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold mb-2">Email</h3>
-                        <p class="text-gray-600">contact@freightpro.com</p>
+                        <p class="text-gray-600">contact@serrapide.com</p>
                     </div>
                 </div>
             </div>
@@ -33,25 +39,25 @@
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
                         <input type="text" name="name" id="name" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                               class="px-5 py-2 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                     </div>
 
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" name="email" id="email" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                               class="px-5 py-2 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                     </div>
 
                     <div>
                         <label for="subject" class="block text-sm font-medium text-gray-700">Sujet</label>
                         <input type="text" name="subject" id="subject" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                               class="px-5 py-2 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                     </div>
 
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
                         <textarea name="message" id="message" rows="4" required
-                                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                  class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                     </div>
 
                     <button type="submit"

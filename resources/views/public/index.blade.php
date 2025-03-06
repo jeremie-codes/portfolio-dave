@@ -6,9 +6,9 @@
     <!-- Hero Carousel Section -->
     <div class="relative">
         <div class="swiper-container hero-swiper">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper" style="height: 520px;">
                 <div class="swiper-slide relative bg-blue-600">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                    <img src="{{ asset('image/maritime.avif') }}"
                          alt="Transport maritime"
                          class="absolute inset-0 w-full h-full object-cover opacity-30">
                     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide relative bg-blue-700">
-                    <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+                    <img src="{{ asset('image/aerien.avif') }}"
                          alt="Transport aérien"
                          class="absolute inset-0 w-full h-full object-cover opacity-30">
                     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -101,7 +101,7 @@
     <!-- Pourquoi nous choisir -->
     <div class="bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12">Pourquoi Choisir FreightPro ?</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Pourquoi Choisir <span class="text-blue-500">Ser-Rapide</span> ?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-blue-600 mb-4">
@@ -148,11 +148,11 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
 @endpush
 
 @push('scripts')
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         new Swiper('.hero-swiper', {

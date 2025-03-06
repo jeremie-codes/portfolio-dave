@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Agence de Fret')</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>@yield('title', 'Ser-Rapide')</title>
+    <link href="{{ asset('assets/css/tailwind.min.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
@@ -14,15 +14,17 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center">
-                        <span class="text-2xl font-bold text-blue-600">Ser-Rapide</span>
+                        <span class="text-2xl font-bold text-blue-600">
+                           <img src="{{ asset('image/icon.png') }}" alt="logo" style="width: 120px">
+                        </span>
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600 transition">Accueil</a>
-                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-blue-600 transition">À propos</a>
-                    <a href="{{ route('contact') }}" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+                    <a href="{{ route('home') }}" class="text-gray-700 {{ Request::is('/') ? 'text-blue-600' : '' }} hover:text-blue-600 transition">Accueil</a>
+                    <a href="{{ route('about') }}" class="text-gray-700 {{ Request::is('about') ? 'text-blue-600' : '' }} hover:text-blue-600 transition">À propos</a>
+                    <a href="{{ route('contact') }}" class="text-gray-700 {{ Request::is('contact') ? 'text-blue-600' : '' }} hover:text-blue-600 transition">Contact</a>
                     <a href="{{ route('contact') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                        Demander un devis
+                        Demander un devis 
                     </a>
                 </div>
                 <!-- Mobile menu button -->
@@ -37,9 +39,9 @@
         </div>
         <!-- Mobile menu -->
         <div class="mobile-menu hidden md:hidden">
-            <a href="{{ route('home') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">Accueil</a>
-            <a href="{{ route('about') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">À propos</a>
-            <a href="{{ route('contact') }}" class="block py-2 px-4 text-sm hover:bg-gray-50">Contact</a>
+            <a href="{{ route('home') }}" class="block py-2 px-4 text-sm {{ Request::is('/') ? 'text-blue-600' : '' }} hover:bg-gray-50">Accueil</a>
+            <a href="{{ route('about') }}" class="block py-2 px-4 text-sm {{ Request::is('/about') ? 'text-blue-600' : '' }} hover:bg-gray-50">À propos</a>
+            <a href="{{ route('contact') }}" class="block py-2 px-4 text-sm {{ Request::is('/contact') ? 'text-blue-600' : '' }} hover:bg-gray-50">Contact</a>
             <a href="{{ route('contact') }}" class="block py-2 px-4 text-sm bg-blue-600 text-white">Demander un devis</a>
         </div>
     </nav>
@@ -113,7 +115,7 @@
                             <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            contact@freightpro.com
+                            contact@serrapide.com
                         </li>
                     </ul>
                 </div>

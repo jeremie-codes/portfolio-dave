@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -21,7 +23,20 @@ class ContactController extends Controller
         ]);
 
         // Ici vous pouvez ajouter la logique pour envoyer l'email ou sauvegarder le message
+        Message::create([
+            'fullname'=> $validated['name'],
+            'email'=> $validated['email'],
+            'sujet'=> $validated['subject'],
+            'message'=> $validated['message'],
+           ]);
 
-        return redirect()->back()->with('success', 'Votre message a été envoyé avec succès !');
+        Client::create([
+            'email'=> $validated['email'],
+            'name'=> $validated['name'],
+        ]);
+
+        // Envoi du message de confirmation
+        return redirect()->back()->with('success', 'Votre message a été envoyé avec succès, nous vous répondrons dans les plus brefs délais.');
+
     }
 }

@@ -4,16 +4,15 @@ namespace App\Filament\Resources\MessageResource\Pages;
 
 use App\Filament\Resources\MessageResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditMessage extends EditRecord
+class ViewMessage extends ViewRecord
 {
     protected static string $resource = MessageResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make()->label('Lire'),
             Actions\DeleteAction::make()->label('Supprimer'),
         ];
     }

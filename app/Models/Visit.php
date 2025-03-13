@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Visit extends Model
 {
     protected $fillable = [
-        "fullname",
-        "email",
-        "sujet",
-        "message",
+        'ip_address'
     ];
 }

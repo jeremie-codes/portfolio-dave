@@ -28,8 +28,9 @@ class UserResource extends Resource
 
     protected static ?string $label = 'Utilisateurs';
     protected static ?string $pluralLabel = 'Utilisateurs';
+    protected static ?string $navigationGroup = 'Paramètres';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
@@ -42,7 +43,7 @@ class UserResource extends Resource
                             ->image()
 
                     ]),
-                Section::make('Identité')
+                    Section::make('Identité')
                     ->columns(2)
                     ->schema([
                         TextInput::make('name')
@@ -55,18 +56,17 @@ class UserResource extends Resource
                             ->maxLength(255),
                         Select::make('role')
                             ->options([
-                                'C-Abonné'=> 'C-Abonné',
-                                'C-Agent'=> 'C-Agent',
-                                'Operateur'=> 'Operateur',
+                                'Agent'=> 'Agent',
                                 'Admin'=> 'Administrateur',
                             ])
-                            ->required(),
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // Rend obligatoire seulement lors de la création
                     ]),
                 Section::make()
                     ->schema([
                         TextInput::make('password')
                             ->password()
-                            ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                            // ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // Rend obligatoire seulement lors de la création
                             ->minLength(8)
                             ->same('password_confirmation')
                             ->dehydrated(fn($state) => filled($state))
@@ -74,7 +74,8 @@ class UserResource extends Resource
                         TextInput::make('password_confirmation')
                             ->label('Password confirmation')
                             ->password()
-                            ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                            // ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // Rend obligatoire seulement lors de la création
                             ->minLength(8)
                             ->dehydrated(false)
                     ])

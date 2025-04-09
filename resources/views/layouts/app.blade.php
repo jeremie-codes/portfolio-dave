@@ -54,7 +54,7 @@
             <div class="col-12">
                 <a href="mailto:{{ $link->email ?? '#' }}" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">{{ $link->email ?? '#' }}</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">+{{ $link->phone }}</span></a>
+                <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">+{{ $link->phone ?? '' }}</span></a>
 
 
                 <div class="float-right">

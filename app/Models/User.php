@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Panel;
 
 /**
  * Class User
@@ -61,4 +62,15 @@ class User extends Authenticatable
         'avatar',
         'is_active'
     ];
+
+    
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // $role = $this->role;
+        // dd($role != "Barman" ?? $role != "Serveur" ?? $role != "Caissier" ?? $role != "Vendeur");
+        //if you are using spatie roles and permissions, you can use the `hasRole` or `hasPermissions` methods
+        // return $role != "Barman" ?? $role != "Serveur" ?? $role != "Caissier" ?? $role != "Barman" ?? $role != "Vendeur";
+        return true;
+    }
+
 }

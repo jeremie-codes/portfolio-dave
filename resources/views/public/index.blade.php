@@ -122,7 +122,7 @@
         <div class="container">
         <div class="row justify-content-center mb-4 block-img-video-1-wrap">
             <div class="col-md-12 mb-5">
-                @if ($video->url)
+                @if ($video->url ?? null)
                     <figure class="block-img-video-1" data-aos="fade">
                         <a href="{{ $video->url }}" data-fancybox data-ratio="2">
                             <span class="icon"><span class="icon-play"></span></span>

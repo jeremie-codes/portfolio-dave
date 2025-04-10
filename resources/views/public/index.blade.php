@@ -66,67 +66,33 @@
             </div>
 
             <div class="owl-carousel owl-all">
-               @foreach ($services as $service)
-                <div class="block__35630 p-0">
-                    <div class="icon mb-0" style="height: 200px; overflow: hidden;">
-                        <a href="#" class="icon mb-0" style="height: 100%;">
-                            @if($service->image != '' || $service->image != null)
-                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
-                            @else
-                                <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
-                            @endif
-                        </a>
-                    </div>
-                    <div class="px-5 py-3">
-                        <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
-                            <h3 class="mb- p-0">{{ $service->titre }}</h3>
-                            <span class="{{ $service->category->name ? 'flaticon-ferry': 'laticon-airplane' }} p-0"></span>
+
+                @foreach ($services as $service)
+                    <div class="block__35630 p-0">
+                        <div class="icon mb-0" style="height: 200px; overflow: hidden;">
+                            <a href="#" class="icon mb-0" style="height: 100%;">
+                                @if($service->image != '' || $service->image != null)
+                                    <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
+                                @else
+                                    <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
+                                @endif
+                            </a>
                         </div>
-                        {{ $service->category->name }}
-                        <p>{!! \Illuminate\Support\Str::limit($service->description, 92, '...') !!}</p>
+                        <div class="px-5 py-3">
+                            <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
+                                <h3 class="mb- p-0">{{ $service->titre }}</h3>
+                                @if ($service->category->name == "Transport de Marchandise")
+                                    <span class="{{ $service->type == 'aérien' ? 'flaticon-airplane': 'flaticon-ferry' }}"></span>
+                                @elseif ($service->category->name == "Logistique et Gestion des stocks")
+                                    <span class="flaticon-box"></span>
+                                @else
+                                    <span class="flaticon-warehouse"></span>
+                                @endif
+                            </div>
+                            <p>{!! \Illuminate\Support\Str::limit($service->description, 92, '...') !!}</p>
+                        </div>
                     </div>
-                </div>
                @endforeach
-
-                <div class="block__35630">
-                    <div class="icon mb-0">
-                        <span class="flaticon-airplane"></span>
-                    </div>
-                    <h3 class="mb-3">Air Freight</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                </div>
-
-                <div class="block__35630">
-                    <div class="icon mb-0">
-                        <span class="flaticon-box"></span>
-                    </div>
-                    <h3 class="mb-3">Package Forwarding</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                </div>
-
-                <div class="block__35630">
-                    <div class="icon mb-0">
-                        <span class="flaticon-lorry"></span>
-                    </div>
-                    <h3 class="mb-3">Trucking</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                </div>
-
-                <div class="block__35630">
-                    <div class="icon mb-0">
-                        <span class="flaticon-warehouse"></span>
-                    </div>
-                    <h3 class="mb-3">Warehouse</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                </div>
-
-                <div class="block__35630">
-                    <div class="icon mb-0">
-                        <span class="flaticon-add"></span>
-                    </div>
-                    <h3 class="mb-3">Delivery</h3>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-                </div>
 
             </div>
         </div>
@@ -135,14 +101,19 @@
     <div class="site-section" id="about-section">
 
         <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-md-7 text-center">
-            <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
-                <h2>About Us</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-7 text-center">
+                    <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
+                        <h2>À propos de nous</h2>
+                        <p>
+                            Depuis plus de 2 ans, <span class="text-warning">Ser-rapide</span> s'est imposé comme un leader dans le secteur du transport et de la logistique internationale. Notre engagement envers l'excellence et l'innovation nous permet de fournir des solutions sur mesure à nos clients.
+                        </p>
+                        <p >
+                            Notre équipe d'experts dévoués travaille sans relâche pour garantir que vos marchandises arrivent à destination en toute sécurité et dans les délais impartis.
+                        </p>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
 
     </div>
@@ -151,39 +122,49 @@
         <div class="container">
         <div class="row justify-content-center mb-4 block-img-video-1-wrap">
             <div class="col-md-12 mb-5">
-            <figure class="block-img-video-1" data-aos="fade">
-                <a href="https://vimeo.com/45830194" data-fancybox data-ratio="2">
-                <span class="icon"><span class="icon-play"></span></span>
-                <img src="images/cargo_delivery_big.jpg" alt="Image" class="img-fluid">
-            </a>
-            </figure>
+                @if ($video->url)
+                    <figure class="block-img-video-1" data-aos="fade">
+                        <a href="{{ $video->url }}" data-fancybox data-ratio="2">
+                            <span class="icon"><span class="icon-play"></span></span>
+                            <img src="{{ $video->url }}" alt="url" class="img-fluid">
+                        </a>
+                    </figure>
+                @else
+                    <figure class="block-img-video-1" data-aos="fade">
+                        <a href="{{ asset('storage/' . $video->thumbnail) }}" data-fancybox data-ratio="2">
+                            <span class="icon"><span class="icon-play"></span></span>
+                            <img src="{{ asset('storage/' . $video->thumbnail) }}" alt="thumbnail" class="img-fluid">
+                        </a>
+                    </figure>
+                @endif
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
             <div class="row">
                 <div class="col-6 col-md-6 mb-4 col-lg-0 col-lg-3" data-aos="fade-up" data-aos-delay="">
                 <div class="block-counter-1">
-                    <span class="number"><span data-number="50">0</span>+</span>
-                    <span class="caption">Years of Experience</span>
+                    <span class="number">+<span data-number="02">0</span></span>
+                    <span class="caption">Années d'expérience</span>
                 </div>
                 </div>
                 <div class="col-6 col-md-6 mb-4 col-lg-0 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                 <div class="block-counter-1">
-                    <span class="number"><span data-number="300">0</span>+</span>
-                    <span class="caption">Companies</span>
+                    <span class="number">+<span data-number="04">0</span></span>
+                    <span class="caption">Agences</span>
                 </div>
                 </div>
                 <div class="col-6 col-md-6 mb-4 col-lg-0 col-lg-3" data-aos="fade-up" data-aos-delay="200">
                 <div class="block-counter-1">
-                    <span class="number"><span data-number="108">0</span>+</span>
-                    <span class="caption">Covered Countries</span>
+                    <span class="number">+<span data-number="04">0</span></span>
+                    <span class="caption">Pays couverts</span>
                 </div>
                 </div>
                 <div class="col-6 col-md-6 mb-4 col-lg-0 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="block-counter-1">
-                    <span class="number"><span data-number="1500">0</span>+</span>
-                    <span class="caption">Couriers</span>
+                    <span class="number"><span data-number="24">0</span>h/7</span>
+                    <span class="caption">Services Clients</span>
                 </div>
                 </div>
             </div>
@@ -192,13 +173,15 @@
         </div>
     </div>
 
-    <div class="site-section" id="team-section">
+    {{-- <div class="site-section" id="team-section">
         <div class="container">
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
             <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
-                <h2>Our Staff</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h2>Notre personnel</h2>
+                <p>
+                    Notre équipe d'experts dévoués travaille sans relâche pour garantir que vos marchandises arrivent à destination en toute sécurité et dans les délais impartis.
+                </p>
             </div>
             </div>
         </div>
@@ -292,85 +275,54 @@
 
 
         </div>
-    </div>
+    </div> --}}
 
     <div class="site-section bg-light" id="pricing-section">
         <div class="container">
-        <div class="row mb-5 justify-content-center text-center">
-            <div class="col-md-7">
-            <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
-                <h2>Pricing</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-            </div>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="">
-            <div class="pricing">
-                <h3 class="text-center text-black">Basic</h3>
-                <div class="price text-center mb-4 ">
-                <span><span>$47</span> / year</span>
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-md-7">
+                <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
+                    <h2>Tarification</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
                 </div>
-                <ul class="list-unstyled ul-check success mb-5">
-
-                <li>Officia quaerat eaque neque</li>
-                <li>Possimus aut consequuntur incidunt</li>
-                <li class="remove">Lorem ipsum dolor sit amet</li>
-                <li class="remove">Consectetur adipisicing elit</li>
-                <li class="remove">Dolorum esse odio quas architecto sint</li>
-                </ul>
-                <p class="text-center">
-                <a href="#" class="btn btn-secondary btn-md">Buy Now</a>
-                </p>
-            </div>
-            </div>
-
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="pricing">
-                <h3 class="text-center text-black">Premium</h3>
-                <div class="price text-center mb-4 ">
-                <span><span>$200</span> / year</span>
                 </div>
-                <ul class="list-unstyled ul-check success mb-5">
-
-                <li>Officia quaerat eaque neque</li>
-                <li>Possimus aut consequuntur incidunt</li>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipisicing elit</li>
-                <li class="remove">Dolorum esse odio quas architecto sint</li>
-                </ul>
-                <p class="text-center">
-                <a href="#" class="btn btn-primary btn-md text-white">Buy Now</a>
-                </p>
-            </div>
             </div>
 
-            <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="pricing">
-                <h3 class="text-center text-black">Professional</h3>
-                <div class="price text-center mb-4 ">
-                <span><span>$750</span> / year</span>
+            <div class="row mb-5">
+                @php
+                    $row = 0;
+                @endphp
+               @foreach ($pricings as $pricing)
+               @php
+                    $row++;
+                @endphp
+                <div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="">
+                    <div class="pricing">
+                        <h3 class="text-center text-black">{{ $pricing->title }}</h3>
+                        <div class="price text-center mb-4 ">
+                        <span>
+                            À partir de <br>
+                            <span style="font-size: 34px">${{ $pricing->price }}</span>
+                            {{ $pricing->title == 'Audit logistique' ? '/Mois': '/Colis' }}
+                        </span>
+                        </div>
+                        <ul class="list-unstyled ul-check success mb-5">
+                            @foreach ($pricing->description as $descritption)
+                            <li>{{ $descritption }}</li>
+                            @endforeach
+                        </ul>
+                        <p class="text-center">
+                        <a href="#" class="btn btn-md {{ $row == 2 ? 'btn-warning': 'btn-secondary' }}">Choisir</a>
+                        </p>
+                    </div>
                 </div>
-                <ul class="list-unstyled ul-check success mb-5">
-
-                <li>Officia quaerat eaque neque</li>
-                <li>Possimus aut consequuntur incidunt</li>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipisicing elit</li>
-                <li>Dolorum esse odio quas architecto sint</li>
-                </ul>
-                <p class="text-center">
-                <a href="#" class="btn btn-secondary btn-md">Buy Now</a>
-                </p>
+               @endforeach
             </div>
-            </div>
-        </div>
-
 
         </div>
     </div>
 
-    <div class="site-section" id="faq-section">
+    {{-- <div class="site-section" id="faq-section">
         <div class="container">
         <div class="row mb-5">
             <div class="block-heading-1 col-12 text-center">
@@ -424,33 +376,33 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="block__73694 site-section border-top" id="why-us-section">
         <div class="container">
-        <div class="row d-flex no-gutters align-items-stretch">
+            <div class="row d-flex no-gutters align-items-stretch">
 
-            <div class="col-12 col-lg-6 block__73422 order-lg-2" style="background-image: url('images/cargo_sea_small.jpg');" data-aos="fade-left" data-aos-delay="">
+                <div class="col-12 col-lg-6 block__73422 order-lg-2" style="background-image: url({{ asset('assets/images/cargo_sea_small.jpg') }});" data-aos="fade-left" data-aos-delay="">
+                </div>
+
+
+
+                <div class="col-lg-5 mr-auto p-lg-5 mt-4 mt-lg-0 order-lg-1" data-aos="fade-right" data-aos-delay="">
+                <h2 class="mb-4 text-black">Pourquoi Nous ?</h2>
+                <h4 class="text-primary">Nous travaillons rapidement et efficacement !</h4>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+
+                <ul class="ul-check primary list-unstyled mt-5">
+                    <li>Fret express</li>
+                    <li>Services sécurisés</li>
+                    <li>Entreposage sécurisé</li>
+                    <li>Économies de coûts</li>
+                    <li>Prouvé par de grandes entreprises</li>
+                </ul>
+
+                </div>
+
             </div>
-
-
-
-            <div class="col-lg-5 mr-auto p-lg-5 mt-4 mt-lg-0 order-lg-1" data-aos="fade-right" data-aos-delay="">
-            <h2 class="mb-4 text-black">Why Us</h2>
-            <h4 class="text-primary">We work quickly and efficiently!</h4>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-            <ul class="ul-check primary list-unstyled mt-5">
-                <li>Cargo express</li>
-                <li>Secure Services</li>
-                <li>Secure Warehouseing</li>
-                <li>Cost savings</li>
-                <li>Proven by great companies</li>
-            </ul>
-
-            </div>
-
-        </div>
         </div>
     </div>
 
@@ -459,7 +411,7 @@
 
         <div class="text-center mb-5">
             <div class="block-heading-1">
-            <h2>Happy Clients</h2>
+            <h2>Clients satisfaits</h2>
             </div>
         </div>
 
@@ -529,7 +481,7 @@
         </div>
     </div>
 
-    <div class="site-section py-5" id="blog-section">
+    {{-- <div class="site-section py-5" id="blog-section">
         <div class="container">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-lg-4 mb-5 mb-lg-0">
@@ -567,7 +519,60 @@
 
         </div>
         </div>
-    </div>
+    </div> --}}
+
+    <div class="site-section bg-light" id="contact-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center mb-5" data-aos="fade-up" data-aos-delay="">
+              <div class="block-heading-1">
+                <span>Entrer en contact</span>
+                <h2>Contactez-nous</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="100">
+              <form action="#" method="post">
+                <div class="form-group row">
+                  <div class="col-md-6 mb-4 mb-lg-0">
+                    <input type="text" class="form-control" placeholder="Nom complet">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <input type="text" class="form-control" placeholder="Adresse email ">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <textarea name="" id="" class="form-control" placeholder="Ecrivez votre message." cols="30" rows="10"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6 mr-auto">
+                    <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Envoyez Message">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
+              <div class="bg-white p-3 p-md-5">
+                <h3 class="text-black mb-4">Coordonnées</h3>
+                <ul class="list-unstyled footer-link">
+                  <li class="d-block mb-3">
+                    <span class="d-block text-black">Address:</span>
+                    <span>34 Street Name, City Name Here, United States</span></li>
+                  <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
+                  <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@yourdomain.com</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 @endsection
 

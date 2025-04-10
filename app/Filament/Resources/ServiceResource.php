@@ -37,7 +37,22 @@ class ServiceResource extends Resource
                         ->maxLength(255),
                     Forms\Components\Select::make('category_id')
                         ->options(Categorie::all()->pluck('name', 'id'))
-                        ->required(),
+                        ->required()
+                        ->reactive(),
+                    Forms\Components\Select::make('type')
+                        ->placeholder('choisir')
+                        ->required()
+                        ->visible(function ($get) {
+                            $category = Categorie::find($get('category_id'));
+                            return $category->name == 'Transport de Marchandise';
+                        })
+                        ->options([
+                            'maritime' => 'maritime',
+                            'aérien' => 'aérien',
+                            'terrestre' => 'terrestre',
+                            'multimodal' => 'multimodal',
+                        ])
+                        ->reactive(),
                     Forms\Components\Toggle::make('est_publie')
                         ->label('Publier'),
                 ]),

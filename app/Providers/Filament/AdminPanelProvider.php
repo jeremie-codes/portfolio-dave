@@ -57,7 +57,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             // ->brandLogo(asset('image/icon.png'))
             ->brandLogoHeight('60px')
-            ->favicon(asset('image/icon.png'))
-            ->sidebarCollapsibleOnDesktop();
+            ->favicon(asset('image/logo.png'));
     }
 }

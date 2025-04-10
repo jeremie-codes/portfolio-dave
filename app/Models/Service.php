@@ -8,10 +8,11 @@ class Service extends Model
 {
     protected $fillable = [
         'titre',
-        'description',
         'image',
+        'type',
+        'description',
         'category_id',
-        'est_publie'
+        'est_publie',
     ];
 
     public function category() {

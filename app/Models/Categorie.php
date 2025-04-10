@@ -11,4 +11,30 @@ class Categorie extends Model
         'is_visible',
         'description',
     ];
+
+    // Dans Categorie.php (modèle)
+    public function getAvailableTypes(): array
+    {
+        return match($this->name) {
+            'Transport de Marchandise' => [
+                'maritime' => 'maritime',
+                'aérien' => 'aérien',
+                'terrestre' => 'terrestre',
+                'multimodal' => 'multimodal',
+            ],
+            'Logistique et Gestion des stocks' => [
+                'stocks' => 'stocks',
+                'groupage' => 'groupage',
+                'Terrestre' => 'Terrestre',
+                'Miltimodal' => 'Miltimodal',
+            ],
+            'Consultation, Conseil et Services Spécialisés' => [
+                'conseil' => 'conseil',
+                'express' => 'express',
+                'audit' => 'audit',
+            ],
+            default => [],
+        };
+    }
+
 }

@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('pricings', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['phone', 'email', 'facebook', 'address', 'instagram', 'twitter', 'whatsapp']);
-            $table->string('data');
+            $table->enum('Title', ['Local', 'Internationnal', 'Audit logistique'])->default('Local');
+            $table->decimal('price', 10, 2)->nullable();
+            $table->json('description')->nullable();
             $table->timestamps();
+
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('pricings');
     }
 };

@@ -20,7 +20,7 @@ class MessageResource extends Resource
 {
     protected static ?string $model = Message::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     public static function form(Form $form): Form
     {
@@ -53,10 +53,10 @@ class MessageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('email')
-                        ->sortable(),
-                    Tables\Columns\TextColumn::make("sujet"),
-                    Tables\Columns\TextColumn::make("message")->limit(40),
-                    Tables\Columns\TextColumn::make('created_at')->label("Date"),
+                    ->sortable(),
+                Tables\Columns\TextColumn::make("sujet"),
+                Tables\Columns\TextColumn::make("message")->limit(40),
+                Tables\Columns\TextColumn::make('created_at')->label("Date"),
             ])
             ->filters([
                 Filter::make('created_at')

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\VideoResource\Pages;
 
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\VideoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditUser extends EditRecord
+class EditVideo extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = VideoResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make()->label('Supprimer'),
+            Actions\DeleteAction::make(),
         ];
     }
 

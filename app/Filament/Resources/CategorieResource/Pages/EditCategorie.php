@@ -16,4 +16,10 @@ class EditCategorie extends EditRecord
             Actions\DeleteAction::make()->label('Supprimer'),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        // Redirige vers la liste des utilisateurs après la création
+        return $this->getResource()::getUrl('index');
+    }
 }

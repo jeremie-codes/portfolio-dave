@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
-            $table->id();
-            $table->enum('type', ['phone', 'email', 'facebook', 'address', 'instagram', 'twitter', 'whatsapp']);
-            $table->string('data');
-            $table->timestamps();
+        Schema::table('pricings', function (Blueprint $table) {
+            // Adding the 'duration' column to the 'pricings' table
+            $table->string('duration')->nullable()->after('price');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::table('pricings', function (Blueprint $table) {
+            //
+        });
     }
 };

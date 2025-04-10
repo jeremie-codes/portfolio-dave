@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Link extends Model
+class Video extends Model
 {
-    // protected $table = "linkes";
     protected $fillable = [
-        'type',
-        'data'
+        'url',
+        'thumbnail',
+        'type'
     ];
+
 }

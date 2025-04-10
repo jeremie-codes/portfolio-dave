@@ -21,97 +21,114 @@
             </div>
         </div>
         </div>
+
+
         <!-- END .ftco-cover-1 -->
         <div class="ftco-service-image-1 pb-5">
-        <div class="container">
-            <div class="owl-carousel owl-all">
-            <div class="service text-center">
-                <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                <div class="px-md-3">
-                <h3><a href="#">Fret maritime</a></h3>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+            <div class="container">
+                <div class="owl-carousel owl-all">
+                <div class="service text-center">
+                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
+                    <div class="px-md-3">
+                        <h3><a href="#">Fret maritime</a></h3>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    </div>
+                </div>
+                <div class="service text-center">
+                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
+                    <div class="px-md-3">
+                    <h3><a href="#">Fret aérien</a></h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    </div>
+                </div>
+                <div class="service text-center">
+                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
+                    <div class="px-md-3">
+                    <h3><a href="#">Réexpédition de colis</a></h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    </div>
+                </div>
                 </div>
             </div>
-            <div class="service text-center">
-                <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                <div class="px-md-3">
-                <h3><a href="#">Fret aérien</a></h3>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                </div>
-            </div>
-            <div class="service text-center">
-                <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                <div class="px-md-3">
-                <h3><a href="#">Réexpédition de colis</a></h3>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                </div>
-            </div>
-            </div>
-        </div>
         </div>
 
     </div>
 
     <div class="site-section bg-light" id="services-section">
         <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-md-7 text-center">
-            <div class="block-heading-1">
-                <h2>What We Offer</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-            </div>
-        </div>
-        <div class="owl-carousel owl-all">
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-ferry"></span>
-            </div>
-            <h3 class="mb-3">Sea Freight</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-7 text-center">
+                    <div class="block-heading-1">
+                        <h2>Ce que nous offrons</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-airplane"></span>
-            </div>
-            <h3 class="mb-3">Air Freight</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-            </div>
+            <div class="owl-carousel owl-all">
+               @foreach ($services as $service)
+                <div class="block__35630 p-0">
+                    <div class="icon mb-0" style="height: 200px; overflow: hidden;">
+                        <a href="#" class="icon mb-0" style="height: 100%;">
+                            @if($service->image != '' || $service->image != null)
+                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
+                            @else
+                                <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
+                            @endif
+                        </a>
+                    </div>
+                    <div class="px-5 py-3">
+                        <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
+                            <h3 class="mb- p-0">{{ $service->titre }}</h3>
+                            <span class="{{ $service->category->name ? 'flaticon-ferry': 'laticon-airplane' }} p-0"></span>
+                        </div>
+                        {{ $service->category->name }}
+                        <p>{!! \Illuminate\Support\Str::limit($service->description, 92, '...') !!}</p>
+                    </div>
+                </div>
+               @endforeach
 
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-box"></span>
-            </div>
-            <h3 class="mb-3">Package Forwarding</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-            </div>
+                <div class="block__35630">
+                    <div class="icon mb-0">
+                        <span class="flaticon-airplane"></span>
+                    </div>
+                    <h3 class="mb-3">Air Freight</h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+                </div>
 
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-lorry"></span>
-            </div>
-            <h3 class="mb-3">Trucking</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-            </div>
+                <div class="block__35630">
+                    <div class="icon mb-0">
+                        <span class="flaticon-box"></span>
+                    </div>
+                    <h3 class="mb-3">Package Forwarding</h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+                </div>
 
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-warehouse"></span>
-            </div>
-            <h3 class="mb-3">Warehouse</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-            </div>
+                <div class="block__35630">
+                    <div class="icon mb-0">
+                        <span class="flaticon-lorry"></span>
+                    </div>
+                    <h3 class="mb-3">Trucking</h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+                </div>
 
-            <div class="block__35630">
-            <div class="icon mb-0">
-                <span class="flaticon-add"></span>
-            </div>
-            <h3 class="mb-3">Delivery</h3>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
-            </div>
+                <div class="block__35630">
+                    <div class="icon mb-0">
+                        <span class="flaticon-warehouse"></span>
+                    </div>
+                    <h3 class="mb-3">Warehouse</h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+                </div>
 
-        </div>
+                <div class="block__35630">
+                    <div class="icon mb-0">
+                        <span class="flaticon-add"></span>
+                    </div>
+                    <h3 class="mb-3">Delivery</h3>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+                </div>
+
+            </div>
         </div>
     </div>
 

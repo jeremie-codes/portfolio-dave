@@ -129,7 +129,7 @@
                             <img src="{{ $video->url }}" alt="url" class="img-fluid">
                         </a>
                     </figure>
-                @else
+                @elseif ($video->thumbnail ?? null)
                     <figure class="block-img-video-1" data-aos="fade">
                         <a href="{{ asset('storage/' . $video->thumbnail) }}" data-fancybox data-ratio="2">
                             <span class="icon"><span class="icon-play"></span></span>

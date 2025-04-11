@@ -10,6 +10,7 @@ class Categorie extends Model
         'name',
         'is_visible',
         'description',
+        'image',
     ];
 
     // Dans Categorie.php (modèle)

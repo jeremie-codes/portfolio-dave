@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pricings', function (Blueprint $table) {
             $table->id();
-            $table->enum('Title', ['Local', 'Internationnal', 'Audit logistique'])->default('Local');
+            $table->enum('title', ['Local', 'Internationnal', 'Audit logistique'])->default('Local');
             $table->decimal('price', 10, 2)->nullable();
             $table->json('description')->nullable();
             $table->timestamps();

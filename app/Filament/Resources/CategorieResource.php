@@ -31,7 +31,12 @@ class CategorieResource extends Resource
                         ->label('titre')
                         ->required()
                         ->maxLength(255),
-                        Forms\Components\RichEditor::make('description')
+                    Forms\Components\FileUpload::make('image')
+                        ->label('Image')
+                        ->directory('categories')
+                        ->image()
+                        ->required(),
+                    Forms\Components\RichEditor::make('description')
                         ->required(),
                     ])->columnSpan(['lg' => 2]),
 
@@ -50,7 +55,8 @@ class CategorieResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('titre'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('description')->limit(50),
                 Tables\Columns\BooleanColumn::make('is_visible')
                     ->label('Visible'),
             ])

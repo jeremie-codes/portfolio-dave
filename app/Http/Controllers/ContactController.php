@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
-    {
-        return view('public.contact');
-    }
 
     public function store(Request $request)
     {
@@ -37,6 +33,22 @@ class ContactController extends Controller
 
         // Envoi du message de confirmation
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès, nous vous répondrons dans les plus brefs délais.');
+
+    }
+
+    public function newsletter(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+        ]);
+
+
+        Client::create([
+            'email'=> $validated['email'],
+        ]);
+
+        // Envoi du message de confirmation
+        return redirect()->back()->with('success', 'Merci de s\'abonner dans notre newsletter!.');
 
     }
 }

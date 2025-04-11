@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Categorie;
 use App\Models\Link;
 use App\Models\Pricing;
+use App\Models\Testimonial;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -18,31 +19,36 @@ class HomeController extends Controller
             ->where('est_publie', true)
             ->latest()
             ->get();
-        $mail = Link::where('type', 'email')->first();
-        $phone = Link::where('type', 'phone')->first();
+        $mails = Link::where('type', 'email')->get();
+        $phones = Link::where('type', 'phone')->get();
         $facebook = Link::where('type', 'facebook')->first();
         $instagram = Link::where('type', 'instagram')->first();
         $twitter = Link::where('type', 'twitter')->first();
-        $address = Link::where('type', 'address')->first();
-        $whatsapp = Link::where('type', 'whatsapp')->first();
+        $adresses = Link::where('type', 'address')->get();
+        $whatsapps = Link::where('type', 'whatsapp')->get();
+
+        // dd($phones->get()->first());
 
         $link = [
-            'email' => $mail->data ?? null,
-            'phone' => $phone->data ?? null,
+            'email' => $mails->first()->data ?? null,
+            'phone' => $phones->first()->data ?? null,
             'facebook' => $facebook->data ?? null,
             'instagram' => $instagram->data ?? null,
             'twitter' => $twitter->data ?? null,
-            'address' => $address->data ?? null,
-            'whatsapp' => $whatsapp->data ?? null,
+            'address' => $adresses->first()->data ?? null,
+            'whatsapp' => $whatsapps->first()->data ?? null,
         ];
 
         $links = Link::all();
         $video = Video::all()->last();
 
         $pricings = Pricing::all();
+        $testimonials = Testimonial::all();
 
         return view('public.index',
-            compact('services', 'link', 'links', 'categories', 'video', 'pricings'));
+            compact('services', 'link', 'links', 'categories', 'video',
+            'pricings', 'phones', 'whatsapps', 'adresses', 'mails', 'testimonials')
+        );
     }
 
     public function show(Service $service)

@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\TestimonialResource\Pages;
+use App\Filament\Resources\TestimonialResource\RelationManagers;
+use App\Models\Testimonial;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class TestimonialResource extends Resource
+{
+    protected static ?string $model = Testimonial::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-megaphone';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\Grid::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('service_id')
+                            ->relationship('service', 'titre')
+                            ->required(),
+                        Forms\Components\Textarea::make('comment')
+                            ->label('Commentaire')
+                            ->rows(3)
+                            ->required(),
+                        Forms\Components\Toggle::make('is_visible')
+                            ->label('Visible ?'),
+                    ]),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('service.titre')
+                    ->label('Service')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('comment')
+                    ->limit(30)
+                    ->label('Commentaire'),
+                Tables\Columns\BooleanColumn::make('is_visible')
+                    ->label('Visible ?'),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make()->label('Modif.'),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function canCreate(): bool
+    {
+        return true;
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListTestimonials::route('/'),
+            'create' => Pages\CreateTestimonial::route('/create'),
+            'edit' => Pages\EditTestimonial::route('/{record}/edit'),
+        ];
+    }
+}

@@ -113,64 +113,86 @@
 
             </header>
 
+            @if(session('success'))
+                <div class="alert alert-success" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.querySelector('.alert').style.display = 'none';
+                    }, 5000); // 5 seconds
+                </script>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000;">
+                    <strong>{{ session('error') }}</strong>
+                </div>
+                <script>
+                    setTimeout(function() {
+                        document.querySelector('.alert').style.display = 'none';
+                    }, 5000); // 5 seconds
+                </script>
+            @endif
+
             @yield('content')
 
             <footer class="site-footer">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-6">
+                <div class="container">
                     <div class="row">
-                    <div class="col-md-7">
-                        <h2 class="footer-heading mb-4">À propos de nous</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <div class="col-md-6">
+                        <div class="row">
+                        <div class="col-md-7">
+                            <h2 class="footer-heading mb-4">À Rétenir sur nous</h2>
+                            <p>Notre engagement envers l'excellence et l'innovation nous permet de fournir des solutions sur mesure à nos clients. </p>
+                        </div>
+                        <div class="col-md-4 ml-auto">
+                            <h2 class="footer-heading mb-4">Liens</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#about-section">À Propos</a></li>
+                                <li><a href="#testimonials-section">Temoignages</a></li>
+                                <li><a href="#services-section">Services</a></li>
+                                <li><a href="#contact-section">Contacts</a></li>
+                            </ul>
+                        </div>
+
+                        </div>
                     </div>
                     <div class="col-md-4 ml-auto">
-                        <h2 class="footer-heading mb-4">Liens</h2>
-                        <ul class="list-unstyled">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
 
-                    </div>
-                </div>
-                <div class="col-md-4 ml-auto">
-
-                    <div class="mb-5">
-                    <h2 class="footer-heading mb-4">Abonnez-vous à la newsletter</h2>
-                    <form action="#" method="post" class="footer-suscribe-form">
-                        <div class="input-group mb-3">
-                        <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Entrer l'Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary text-white" type="button" id="button-addon2">S'abonner</button>
+                        <div class="mb-5">
+                        <h2 class="footer-heading mb-4">Abonnez-vous à la newsletter</h2>
+                        <form action="{{ route('newsletter.store') }}" method="post" class="footer-suscribe-form">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <input type="email" required name="email" class="form-control border-secondary text-white bg-transparent" placeholder="Entrer l'Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary text-white" type="submit" id="button-addon2">S'abonner</button>
+                                </div>
+                            </div>
                         </div>
+
+
+                        <h2 class="footer-heading mb-4">Suivez-nous</h2>
+                            <a href="{{ $link['facebook'] ?? '#' }}" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                            <a href="{{ $link['twitter'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                            <a href="{{ $link['instagram'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                            <a href="{{ $link['email'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-envelope-open-o"></span></a>
+                        </form>
+                    </div>
+                    </div>
+                    <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                        <p class="copyright">
+                            <!-- Link back to Free-Template.co can't be removed. Template is licensed under CC BY 3.0. -->
+                            &copy; <script>document.write(new Date().getFullYear());</script> <strong>Cargo</strong> Free Website Template. All Rights Reserved. Design by <a href="https://free-template.co/" target="_blank">Free-Template.co</a>
+                        </p>
                         </div>
                     </div>
 
-
-                    <h2 class="footer-heading mb-4">Suivez-nous</h2>
-                        <a href="{{ $link['facebook'] ?? '#' }}" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                        <a href="{{ $link['twitter'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                        <a href="{{ $link['instagram'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                        <a href="{{ $link['email'] ?? '#' }}" class="pl-3 pr-3"><span class="icon-envelope-open-o"></span></a>
-                    </form>
-                </div>
-                </div>
-                <div class="row pt-5 mt-5 text-center">
-                <div class="col-md-12">
-                    <div class="border-top pt-5">
-                    <p class="copyright">
-                        <!-- Link back to Free-Template.co can't be removed. Template is licensed under CC BY 3.0. -->
-                        &copy; <script>document.write(new Date().getFullYear());</script> <strong>Cargo</strong> Free Website Template. All Rights Reserved. Design by <a href="https://free-template.co/" target="_blank">Free-Template.co</a>
-                    </p>
                     </div>
                 </div>
-
-                </div>
-            </div>
             </footer>
 
         </div>

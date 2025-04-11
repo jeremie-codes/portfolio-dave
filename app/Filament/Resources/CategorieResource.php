@@ -34,8 +34,7 @@ class CategorieResource extends Resource
                     Forms\Components\FileUpload::make('image')
                         ->label('Image')
                         ->directory('categories')
-                        ->image()
-                        ->required(),
+                        ->image(),
                     Forms\Components\RichEditor::make('description')
                         ->required(),
                     ])->columnSpan(['lg' => 2]),

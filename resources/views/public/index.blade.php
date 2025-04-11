@@ -27,27 +27,24 @@
         <div class="ftco-service-image-1 pb-5">
             <div class="container">
                 <div class="owl-carousel owl-all">
-                <div class="service text-center">
-                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                    <div class="px-md-3">
-                        <h3><a href="#">Fret maritime</a></h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                <div class="service text-center">
-                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                    <div class="px-md-3">
-                    <h3><a href="#">Fret aérien</a></h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
-                <div class="service text-center">
-                    <a href="#"><img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid"></a>
-                    <div class="px-md-3">
-                    <h3><a href="#">Réexpédition de colis</a></h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                    </div>
-                </div>
+                    @foreach ($categories as $category)
+                        <div class="service text-center">
+                            <div style="height: 230px; overflow: hidden; position: relative; margin-bottom: 20px;">
+                                <a href="#services-section" style="height: 230px;">
+                                    @if($category->image != '' || $category->image != null)
+                                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->titre }}" class="img-fluid"  style="min-height: 230px;">
+                                        <div style="position: absolute; top:0; left: 0; width: 100%; height: 100%; background: black; opacity: 0.2"></div>
+                                    @else
+                                        <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
+                                    @endif
+                                </a>
+                            </div>
+                            <div class="px-md-3">
+                                <h3><a href="#">{{ $category->name }}</a></h3>
+                                <p>{!! $category->description !!}</</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

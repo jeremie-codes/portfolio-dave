@@ -9,4 +9,10 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateTestimonial extends CreateRecord
 {
     protected static string $resource = TestimonialResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        // Redirige vers la liste des utilisateurs après la création
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -41,7 +41,7 @@
                                 <div class="comment-body">
                                     <h3>{{ $comment->name }}</h3>
                                     <div class="meta">{{ $comment->created_at->toString() }}</div>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                    <p>{{ $comment->comment }}</p>
                                     {{-- <p><a href="#" class="reply">Reply</a></p> --}}
                                 </div>
                             </li>

@@ -27,12 +27,14 @@ class TestimonialResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
+                            ->label('Nom')
                             ->maxLength(255),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Select::make('service_id')
+                            ->label('Service')
                             ->relationship('service', 'titre')
                             ->required(),
                         Forms\Components\Textarea::make('comment')

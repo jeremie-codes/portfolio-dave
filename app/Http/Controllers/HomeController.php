@@ -54,6 +54,9 @@ class HomeController extends Controller
     public function show(Service $service)
     {
         $link = Link::all()->first();
-        return view('public.show', compact('service', 'link'));
+        $services = Service::where('id', '!=', $service->id)->get();
+        $comments = Testimonial::where('service_id', $service->id)->latest()->paginate(10);
+
+        return view('public.show', compact('service', 'services', 'link', 'comments'));
     }
 }

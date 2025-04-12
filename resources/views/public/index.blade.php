@@ -64,7 +64,7 @@
                 @foreach ($services as $service)
                     <div class="block__35630 p-0">
                         <div class="icon mb-0" style="height: 200px; overflow: hidden;">
-                            <a href="#" class="icon mb-0" style="height: 100%;">
+                            <a href="{{ route('services.show', $service->id) }}" class="icon mb-0" style="height: 100%;">
                                 @if($service->image != '' || $service->image != null)
                                     <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
                                 @else
@@ -74,7 +74,11 @@
                         </div>
                         <div class="px-5 py-3">
                             <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
-                                <h3 class="mb- p-0">{{ $service->titre }}</h3>
+                                <h3 class=" p-0">
+                                    <a class="text-black" href="{{ route('services.show', $service->id) }}">
+                                        {{ $service->titre }}
+                                    </a>
+                                </h3>
                                 @if ($service->category->name == "Transport de Marchandise")
                                     <span class="{{ $service->type == 'aérien' ? 'flaticon-airplane': 'flaticon-ferry' }}"></span>
                                 @elseif ($service->category->name == "Logistique et Gestion des stocks")

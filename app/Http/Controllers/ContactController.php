@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Message;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -26,13 +27,51 @@ class ContactController extends Controller
             'message'=> $validated['message'],
            ]);
 
-        Client::create([
-            'email'=> $validated['email'],
-            'name'=> $validated['name'],
-        ]);
+        $exists = Client::where('email', $validated['email'])->exists();
+
+        if (!$exists) {
+            Client::create([
+                'email' => $validated['email'],
+                'name'  => $validated['name'],
+            ]);
+        }
 
         // Envoi du message de confirmation
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès, nous vous répondrons dans les plus brefs délais.');
+
+    }
+
+    public function comment(Request $request)
+    {
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // dd($request->service);
+
+        // Ici vous pouvez ajouter la logique pour envoyer l'email ou sauvegarder le message
+        Testimonial::create([
+            'name'=> $validated['name'],
+            'email'=> $validated['email'],
+            'service_id'=> $request->service,
+            'comment'=> $validated['message'],
+           ]);
+
+
+        $exists = Client::where('email', $validated['email'])->exists();
+
+        if (!$exists) {
+            Client::create([
+                'email' => $validated['email'],
+                'name'  => $validated['name'],
+            ]);
+        }
+
+        // Envoi du message de confirmation
+        return redirect()->back()->with('success', 'Commentaire posté avec succès!');
 
     }
 
@@ -42,13 +81,16 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
         ]);
 
+        $exists = Client::where('email', $validated['email'])->exists();
 
-        Client::create([
-            'email'=> $validated['email'],
-        ]);
+        if (!$exists) {
+            Client::create([
+                'email' => $validated['email'],
+            ]);
+        }
 
         // Envoi du message de confirmation
-        return redirect()->back()->with('success', 'Merci de s\'abonner dans notre newsletter!.');
+        return redirect()->back()->with('success', 'Merci de s\'abonner dans notre newsletter!');
 
     }
 }

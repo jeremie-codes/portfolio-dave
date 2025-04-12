@@ -43,7 +43,7 @@ class HomeController extends Controller
         $video = Video::all()->last();
 
         $pricings = Pricing::all();
-        $testimonials = Testimonial::all();
+        $testimonials = Testimonial::where('is_visible', true)->get();
 
         return view('public.index',
             compact('services', 'link', 'links', 'categories', 'video',
@@ -55,8 +55,9 @@ class HomeController extends Controller
     {
         $link = Link::all()->first();
         $services = Service::where('id', '!=', $service->id)->get();
-        $comments = Testimonial::where('service_id', $service->id)->latest()->paginate(10);
+        $comments = Testimonial::where('service_id', $service->id)->where('is_visible', true)->latest()->paginate(10);
 
         return view('public.show', compact('service', 'services', 'link', 'comments'));
     }
+
 }

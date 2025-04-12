@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->foreignId('service_id')->constrained('services')->cascadeOnDelete();
             $table->text('comment');
-            $table->boolean('is_visible')->default(false);
+            $table->boolean('is_visible')->default(true);
             $table->timestamps();
         });
     }

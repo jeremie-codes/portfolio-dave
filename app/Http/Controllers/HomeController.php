@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Service;
 use App\Models\Categorie;
 use App\Models\Link;
@@ -45,8 +46,10 @@ class HomeController extends Controller
         $pricings = Pricing::all();
         $testimonials = Testimonial::where('is_visible', true)->get();
 
+        $abouts = About::all();
+
         return view('public.index',
-            compact('services', 'link', 'links', 'categories', 'video',
+            compact('services', 'link', 'links', 'categories', 'video', 'abouts',
             'pricings', 'phones', 'whatsapps', 'adresses', 'mails', 'testimonials')
         );
     }

@@ -106,12 +106,9 @@
                 <div class="col-md-7 text-center">
                     <div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
                         <h2>À propos de nous</h2>
-                        <p>
-                            Depuis plus de 2 ans, <span class="text-warning">Ser-rapide</span> s'est imposé comme un leader dans le secteur du transport et de la logistique internationale. Notre engagement envers l'excellence et l'innovation nous permet de fournir des solutions sur mesure à nos clients.
-                        </p>
-                        <p >
-                            Notre équipe d'experts dévoués travaille sans relâche pour garantir que vos marchandises arrivent à destination en toute sécurité et dans les délais impartis.
-                        </p>
+                        @foreach ($abouts as $about)
+                        {!! $about->description !!}
+                        @endforeach
                     </div>
                 </div>
             </div>

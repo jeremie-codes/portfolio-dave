@@ -8,13 +8,13 @@
         <div class="ftco-cover-1 overlay" style="background-image: url({{ asset('image/banner.avif') }})">
         <div class="container">
             <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1>Choisissez la qualité de livraison de votre cargaison</h1>
-                <p class="mb-5"><a href="{{ url('') }}" target="_blank">Ser-rapide</a> est à votre service !</p>
-                <div class="form-group">
-                    <a href="#contact-section" class="btn btn-primary text-white py-3">Demander un dévis</a>
+                <div class="col-lg-6">
+                    <h1>Choisissez la qualité de livraison de votre cargaison</h1>
+                    <p class="mb-5"><a href="{{ url('') }}" target="_blank">Ser-rapide</a> est à votre service !</p>
+                    <div class="form-group">
+                        <a href="#contact-section" class="btn btn-primary text-white py-3">Demander un dévis</a>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         </div>

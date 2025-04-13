@@ -59,35 +59,38 @@
                 </div>
             </div>
 
-            <div class="owl-carousel owl-all">
+            <div class="row">
 
                 @foreach ($services as $service)
-                    <div class="block__35630 p-0">
-                        <div class="icon mb-0" style="height: 200px; overflow: hidden;">
-                            <a href="{{ route('services.show', $service->id) }}" class="icon mb-0" style="height: 100%;">
-                                @if($service->image != '' || $service->image != null)
-                                    <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
-                                @else
-                                    <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
-                                @endif
-                            </a>
-                        </div>
-                        <div class="px-5 py-3">
-                            <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
-                                <h3 class=" p-0">
-                                    <a class="text-black" href="{{ route('services.show', $service->id) }}">
-                                        {{ $service->titre }}
-                                    </a>
-                                </h3>
-                                @if ($service->category->name == "Transport de Marchandise")
-                                    <span class="{{ $service->type == 'aérien' ? 'flaticon-airplane': 'flaticon-ferry' }}"></span>
-                                @elseif ($service->category->name == "Logistique et Gestion des stocks")
-                                    <span class="flaticon-box"></span>
-                                @else
-                                    <span class="flaticon-warehouse"></span>
-                                @endif
+                    <div class="col-lg-4 my-2">
+                        <div class="block__35630 p-0 col-lg-12">
+                            <div class="icon mb-0" style="height: 200px; overflow: hidden;">
+                                <a href="{{ route('services.show', $service->id) }}" class="icon mb-0" style="height: 100%;">
+                                    @if($service->image != '' || $service->image != null)
+                                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->titre }}" class="img-fluid"  style="min-height: 200px;">
+                                    @else
+                                        <img src="{{ asset('assets/images/cargo_sea_small.jpg') }}" alt="Image" class="img-fluid">
+                                    @endif
+                                </a>
                             </div>
-                            <p>{!! \Illuminate\Support\Str::limit($service->description, 92, '...') !!}</p>
+                            <div class="px-3 py-3">
+                                <div class="icon mb-0 d-flex justify-content-between align-items-center" style="height: 40px" >
+                                    <a class="text-black col p-0" href="{{ route('services.show', $service->id) }}"
+                                        style="position: relative; text-align: left;">
+                                        <h2 class="col-12 p-0" style="position: relative; text-align: left; font-size: 20px;">
+                                            {{ $service->titre }}
+                                        </h2>
+                                    </a>
+                                    @if ($service->category->name == "Transport de Marchandise")
+                                        <span style="font-size: 34px;" class="{{ $service->type == 'aérien' ? 'flaticon-airplane': 'flaticon-ferry' }}"></span>
+                                    @elseif ($service->category->name == "Logistique et Gestion des stocks")
+                                        <span style="font-size: 34px;" class="flaticon-box"></span>
+                                    @else
+                                        <span class="flaticon-warehouse"></span>
+                                    @endif
+                                </div>
+                                <p>{!! \Illuminate\Support\Str::limit($service->description, 92, '...') !!}</p>
+                            </div>
                         </div>
                     </div>
                @endforeach

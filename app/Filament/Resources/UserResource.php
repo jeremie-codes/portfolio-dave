@@ -26,8 +26,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $label = 'Utilisateurs';
-    protected static ?string $pluralLabel = 'Utilisateurs';
+    protected static ?string $pluralLabel = 'Profil';
     protected static ?string $navigationGroup = 'Paramètres';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
@@ -55,12 +54,12 @@ class UserResource extends Resource
                             ->label('Email')
                             ->required()
                             ->maxLength(255),
-                        Select::make('role')
-                            ->options([
-                                'Agent'=> 'Agent',
-                                'Admin'=> 'Administrateur',
-                            ])
-                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // Rend obligatoire seulement lors de la création
+                        // Select::make('role')
+                        //     ->options([
+                        //         'Agent'=> 'Agent',
+                        //         'Admin'=> 'Administrateur',
+                        //     ])
+                        //     ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // Rend obligatoire seulement lors de la création
                     ]),
                 Section::make()
                     ->schema([

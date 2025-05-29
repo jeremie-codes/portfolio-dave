@@ -33,7 +33,7 @@ class CategorieResource extends Resource
                         ->required()
                         ->maxLength(255),
                     Forms\Components\FileUpload::make('image')
-                        ->label('Image')
+                        ->label('Image (Pas obligatoire)')
                         ->directory('categories')
                         ->image(),
                     Forms\Components\RichEditor::make('description')

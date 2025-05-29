@@ -36,6 +36,10 @@ class AboutResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('title')
                             ->maxLength(60),
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Image (Pas obligatoire)')
+                            ->directory('categories')
+                            ->image(),
                         Forms\Components\RichEditor::make('description')
                             ->required()
                             ->maxLength(600),
@@ -51,6 +55,7 @@ class AboutResource extends Resource
                     ->label('Titre')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('description')
                     ->label('Description')
                     ->limit(50)

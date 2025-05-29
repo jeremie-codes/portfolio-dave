@@ -10,6 +10,7 @@ class About extends Model
 
     protected $fillable = [
         'title',
+        'image',
         'description',
     ];
 }

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Client;
+use App\Models\Service;
 use App\Models\Message;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -14,7 +14,7 @@ class VisitorCount extends BaseWidget
     {
         $visitorCount = Visit::count();
         $messageCount = Message::count();
-        $clientCount = Client::count();
+        $serviceActiveCount = Service::count();
 
         return [
             Stat::make('Visiteurs', $visitorCount)
@@ -25,9 +25,9 @@ class VisitorCount extends BaseWidget
                 ->description('Total des messages')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
                 ->color('primary'),
-            Stat::make('Clients', $clientCount)
-                ->description('Total des clients enregistrés')
-                ->descriptionIcon('heroicon-s-user-group')
+            Stat::make('Services', $serviceActiveCount)
+                ->description('Total des Articles')
+                ->descriptionIcon('heroicon-o-clipboard-document-list')
                 ->color('primary'),
         ];
     }

@@ -6,9 +6,7 @@ use App\Models\About;
 use App\Models\Service;
 use App\Models\Categorie;
 use App\Models\Link;
-use App\Models\Pricing;
 use App\Models\Testimonial;
-use App\Models\Video;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +31,7 @@ class HomeController extends Controller
         $link = [
             'email' => $mails->first()->data ?? null,
             'phone' => $phones->first()->data ?? null,
+            'phone2' => $phones->last()->data ?? null,
             'facebook' => $facebook->data ?? null,
             'instagram' => $instagram->data ?? null,
             'twitter' => $twitter->data ?? null,
@@ -41,26 +40,41 @@ class HomeController extends Controller
         ];
 
         $links = Link::all();
-        $video = Video::all()->last();
-
-        $pricings = Pricing::all();
-        $testimonials = Testimonial::where('is_visible', true)->get();
-
         $abouts = About::all();
 
+        // dd($abouts);
+        $testimonials = Testimonial::where('is_visible', true)->get();
+
         return view('public.index',
-            compact('services', 'link', 'links', 'categories', 'video', 'abouts',
-            'pricings', 'phones', 'whatsapps', 'adresses', 'mails', 'testimonials')
+            compact('services', 'link', 'links', 'categories', 'abouts',
+            'phones', 'whatsapps', 'adresses', 'mails', 'testimonials')
         );
     }
 
     public function show(Service $service)
     {
-        $link = Link::all()->first();
+        $links = Link::all()->first();
+        $mails = Link::where('type', 'email')->get();
+        $phones = Link::where('type', 'phone')->get();
+        $facebook = Link::where('type', 'facebook')->first();
+        $instagram = Link::where('type', 'instagram')->first();
+        $twitter = Link::where('type', 'twitter')->first();
+        $adresses = Link::where('type', 'address')->get();
+        $whatsapps = Link::where('type', 'whatsapp')->get();
+        $link = [
+            'email' => $mails->first()->data ?? null,
+            'phone' => $phones->first()->data ?? null,
+            'phone2' => $phones->last()->data ?? null,
+            'facebook' => $facebook->data ?? null,
+            'instagram' => $instagram->data ?? null,
+            'twitter' => $twitter->data ?? null,
+            'address' => $adresses->first()->data ?? null,
+            'whatsapp' => $whatsapps->first()->data ?? null,
+        ];
         $services = Service::where('id', '!=', $service->id)->get();
         $comments = Testimonial::where('service_id', $service->id)->where('is_visible', true)->latest()->paginate(10);
-
-        return view('public.show', compact('service', 'services', 'link', 'comments'));
+        // dd($comments);
+        return view('public.show', compact('service', 'services', 'links', 'link', 'comments'));
     }
 
 }

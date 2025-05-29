@@ -1,34 +1,95 @@
 @extends('layouts.app')
 
-@section('title', 'À propos - Ser-Rapide')
+@section('title', 'À propos - portfolio')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h1 class="text-4xl font-bold mb-6">À propos de FreightPro</h1>
-                <p class="text-gray-600 mb-6">
-                    Depuis plus de 15 ans, FreightPro s'est imposé comme un leader dans le secteur du transport et de la logistique internationale. Notre engagement envers l'excellence et l'innovation nous permet de fournir des solutions sur mesure à nos clients.
-                </p>
-                <p class="text-gray-600 mb-6">
-                    Notre équipe d'experts dévoués travaille sans relâche pour garantir que vos marchandises arrivent à destination en toute sécurité et dans les délais impartis.
-                </p>
-                <div class="grid grid-cols-2 gap-6 mt-8">
-                    <div class="text-center">
-                        <span class="text-4xl font-bold text-blue-600">1500+</span>
-                        <p class="text-gray-600">Clients satisfaits</p>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-4xl font-bold text-blue-600">50+</span>
-                        <p class="text-gray-600">Pays desservis</p>
+      <!-- Breadcrumb Section Begin -->
+      <section class="breadcrumb-section set-bg bg-dark" data-setbg="{{ asset('assets/img/breadcrumb-bg.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+                        <h2>À Propos</h2>
+                        <div class="bt-option">
+                            <a href="/">Accueil</a>
+                            <span>À Propos</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                     alt="Notre équipe"
-                     class="rounded-lg shadow-lg">
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- About US Section Begin -->
+    <section class="aboutus-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                    @if ($abouts->count() > 0)
+                        <div class="about-video set-bg" data-setbg="{{ asset('storage/' . $abouts->count() > 0 ? $abouts[0]->image : '' ) }}"></div>
+                    @else
+                        <div class="about-video set-bg" data-setbg=""></div>
+                    @endif
+                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <span>À Porpos de Moi</span>
+                            <h2>Ce que vous devez savoir</h2>
+                        </div>
+                        <div class="at-desc">
+                            @foreach ($abouts as $about)
+                                <h3 class="text-light">{{ $about->title}}</h3>
+                                {!! $about->description !!}
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- About US Section End -->
+
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Temoignages</span>
+                        <h2>clients Satisfaites</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="ts_slider owl-carousel">
+                @foreach ($testimonials as $testimanonial)
+                    <div class="ts_item">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="ti_pic">
+                                    <img src="{{ asset('storage/'.$testimanonial->service->image) }}" alt="">
+                                    {{-- <p>{{ $testimanonial->service->titre }}</p> --}}
+                                </div>
+                                <div class="ti_text">
+                                    <p>{{ $testimanonial->comment }}</p>
+
+                                    <h5>{{ $testimanonial->name ?? 'Anonyme' }}</h5>
+                                    <div class="tt-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
 @endsection

@@ -25,7 +25,7 @@ class VisitorCount extends BaseWidget
                 ->description('Total des messages')
                 ->descriptionIcon('heroicon-o-rectangle-stack')
                 ->color('primary'),
-            Stat::make('Services', $serviceActiveCount)
+            Stat::make('Posts', $serviceActiveCount)
                 ->description('Total des Articles')
                 ->descriptionIcon('heroicon-o-clipboard-document-list')
                 ->color('primary'),
